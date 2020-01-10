@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="來源檔案">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="標頭檔">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="資源檔">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="States">
+      <UniqueIdentifier>{98361663-a728-4d36-bbd7-fd085a27df4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entities">
+      <UniqueIdentifier>{a2ab3d27-8b69-4e3c-bf19-4e8e378f567d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{050aa27b-4797-489d-bfcb-77a68ce9b1a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="User_Interfaces">
+      <UniqueIdentifier>{de9b64e5-7bf4-4b3f-a0be-8057165921c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Automation">
+      <UniqueIdentifier>{de19d16f-a2d3-41a8-9350-be1951782390}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects">
+      <UniqueIdentifier>{c48f3a15-5acb-42a5-a844-629fa10dd47d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\Levels">
+      <UniqueIdentifier>{96b56b33-9746-4288-8819-a0799125490e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenuState.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="MovementComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Collider.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="GameoverState.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="MapState.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="State.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="CombatComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Bicycle.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="AutomationComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Maisy.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerHealthBar.cpp">
+      <Filter>User_Interfaces</Filter>
+    </ClCompile>
+    <ClCompile Include="MapPlayer.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="SuccessState.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="Platform.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="BlueFireBall.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>User_Interfaces</Filter>
+    </ClCompile>
+    <ClCompile Include="Action.cpp">
+      <Filter>Components\Automation</Filter>
+    </ClCompile>
+    <ClCompile Include="Agression.cpp">
+      <Filter>Components\Automation</Filter>
+    </ClCompile>
+    <ClCompile Include="ShuiYuanABe.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="NyanCat.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Goal.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="PauseMenu.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="WickedDoge.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState_PalmAvenue.cpp">
+      <Filter>States\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState_Playground.cpp">
+      <Filter>States\Levels</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Game.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenuState.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="GameoverState.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="MapState.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="Variables.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="Bicycle.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Maisy.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerHealthBar.h">
+      <Filter>User_Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="MapPlayer.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="SuccessState.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="AutomationComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Collider.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="MovementComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="CombatComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="BlueFireBall.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>User_Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Action.h">
+      <Filter>Components\Automation</Filter>
+    </ClInclude>
+    <ClInclude Include="Agression.h">
+      <Filter>Components\Automation</Filter>
+    </ClInclude>
+    <ClInclude Include="ShuiYuanABe.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="NyanCat.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Goal.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseMenu.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="WickedDoge.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState_PalmAvenue.h">
+      <Filter>States\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState_Playground.h">
+      <Filter>States\Levels</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Project3.rc">
+      <Filter>資源檔</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
