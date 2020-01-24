@@ -6,7 +6,7 @@
 #include "Variables.h"
 #include "Movementcomponent.h"
 
-class Agression
+class Aggression
 {
 
 private:
@@ -28,8 +28,8 @@ public:
 
 
 	// constructor/destructor
-	Agression(EntityAgressionStatus typeOfAgression, double totalAgressionTime, double baseAgressTimeGap);
-	~Agression();
+	Aggression(EntityAgressionStatus typeOfAgression, double totalAgressionTime, double baseAgressTimeGap);
+	~Aggression();
 
 	// updates
 	void update(const float& dt, sf::Vector2f thisVelocity, sf::Vector2f playerPosition);

@@ -1,7 +1,13 @@
 #pragma once
+
 #include "MainMenuState.h"
+
 #include "GameState.h"
-#include "GameState_PalmAvenue.h"
+#include "GameState_PalmBoulevard.h"
+#include "GameState_SportsField.h"
+#include "GameState_Classroom.h"
+#include "GameState_Farm.h"
+
 #include "GameState_Playground.h"
 #include "Button.h"
 #include "mapPlayer.h"

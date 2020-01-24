@@ -30,7 +30,6 @@ void CombatComponent::initVariables(int maxHealth, int nearAttackDamage,
                                     int farAttackDamage, double farAttackCDTime,
                                     double farAttackRange, bool isPlayer) 
 {
-    std::cout << "init combat vars" << std::endl;
 
     this->maxHealth = maxHealth;
     this->health = maxHealth;

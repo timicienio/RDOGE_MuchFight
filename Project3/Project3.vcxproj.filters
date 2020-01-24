@@ -102,9 +102,6 @@
     <ClCompile Include="Action.cpp">
       <Filter>Components\Automation</Filter>
     </ClCompile>
-    <ClCompile Include="Agression.cpp">
-      <Filter>Components\Automation</Filter>
-    </ClCompile>
     <ClCompile Include="ShuiYuanABe.cpp">
       <Filter>Entities</Filter>
     </ClCompile>
@@ -120,22 +117,31 @@
     <ClCompile Include="WickedDoge.cpp">
       <Filter>Entities</Filter>
     </ClCompile>
+    <ClCompile Include="GameState_Playground.cpp">
+      <Filter>States\Levels</Filter>
+    </ClCompile>
     <ClCompile Include="GameState.cpp">
       <Filter>States</Filter>
     </ClCompile>
-    <ClCompile Include="GameState_PalmAvenue.cpp">
+    <ClCompile Include="GameState_PalmBoulevard.cpp">
       <Filter>States\Levels</Filter>
     </ClCompile>
-    <ClCompile Include="GameState_Playground.cpp">
+    <ClCompile Include="Aggression.cpp">
+      <Filter>Components\Automation</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState_SportsField.cpp">
+      <Filter>States\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState_Classroom.cpp">
+      <Filter>States\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState_Farm.cpp">
       <Filter>States\Levels</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
       <Filter>標頭檔</Filter>
-    </ClInclude>
-    <ClInclude Include="GameState.h">
-      <Filter>States</Filter>
     </ClInclude>
     <ClInclude Include="Entity.h">
       <Filter>Entities</Filter>
@@ -203,9 +209,6 @@
     <ClInclude Include="Action.h">
       <Filter>Components\Automation</Filter>
     </ClInclude>
-    <ClInclude Include="Agression.h">
-      <Filter>Components\Automation</Filter>
-    </ClInclude>
     <ClInclude Include="ShuiYuanABe.h">
       <Filter>Entities</Filter>
     </ClInclude>
@@ -221,10 +224,25 @@
     <ClInclude Include="WickedDoge.h">
       <Filter>Entities</Filter>
     </ClInclude>
-    <ClInclude Include="GameState_PalmAvenue.h">
+    <ClInclude Include="GameState_Playground.h">
       <Filter>States\Levels</Filter>
     </ClInclude>
-    <ClInclude Include="GameState_Playground.h">
+    <ClInclude Include="GameState.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState_PalmBoulevard.h">
+      <Filter>States\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="Aggression.h">
+      <Filter>Components\Automation</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState_SportsField.h">
+      <Filter>States\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState_Farm.h">
+      <Filter>States\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState_Classroom.h">
       <Filter>States\Levels</Filter>
     </ClInclude>
   </ItemGroup>

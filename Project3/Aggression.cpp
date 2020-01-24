@@ -1,18 +1,18 @@
-#include "Agression.h"
+#include "Aggression.h"
 
-Agression::Agression(EntityAgressionStatus typeOfAgression, double totalAgressionTime, double baseAgressTimeGap)
+Aggression::Aggression(EntityAgressionStatus typeOfAgression, double totalAgressionTime, double baseAgressTimeGap)
 {
 	this->typeOfAgression = typeOfAgression;
 	this->totalAgressionTime = totalAgressionTime;
 	this->baseAgressTimeGap = baseAgressTimeGap;
 }
 
-Agression::~Agression()
+Aggression::~Aggression()
 {
 
 }
 
-void Agression::update(const float& dt, sf::Vector2f currentMovementOutput, sf::Vector2f position)
+void Aggression::update(const float& dt, sf::Vector2f currentMovementOutput, sf::Vector2f position)
 {
 	this->currentAgressionTime += dt;
 	this->currenRestTime += dt;

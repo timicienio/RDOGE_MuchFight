@@ -145,7 +145,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Action.cpp" />
-    <ClCompile Include="Agression.cpp" />
+    <ClCompile Include="Aggression.cpp" />
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="AutomationComponent.cpp" />
     <ClCompile Include="Bicycle.cpp" />
@@ -157,8 +157,11 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameoverState.cpp" />
     <ClCompile Include="GameState.cpp" />
-    <ClCompile Include="GameState_PalmAvenue.cpp" />
+    <ClCompile Include="GameState_Classroom.cpp" />
+    <ClCompile Include="GameState_Farm.cpp" />
+    <ClCompile Include="GameState_PalmBoulevard.cpp" />
     <ClCompile Include="GameState_Playground.cpp" />
+    <ClCompile Include="GameState_SportsField.cpp" />
     <ClCompile Include="Goal.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenuState.cpp" />
@@ -178,7 +181,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Action.h" />
-    <ClInclude Include="Agression.h" />
+    <ClInclude Include="Aggression.h" />
     <ClInclude Include="Animation.h" />
     <ClInclude Include="AutomationComponent.h" />
     <ClInclude Include="Bicycle.h" />
@@ -190,8 +193,11 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameoverState.h" />
     <ClInclude Include="GameState.h" />
-    <ClInclude Include="GameState_PalmAvenue.h" />
+    <ClInclude Include="GameState_Classroom.h" />
+    <ClInclude Include="GameState_Farm.h" />
+    <ClInclude Include="GameState_PalmBoulevard.h" />
     <ClInclude Include="GameState_Playground.h" />
+    <ClInclude Include="GameState_SportsField.h" />
     <ClInclude Include="Goal.h" />
     <ClInclude Include="MainMenuState.h" />
     <ClInclude Include="Maisy.h" />

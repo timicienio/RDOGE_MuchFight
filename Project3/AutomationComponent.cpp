@@ -7,7 +7,7 @@ AutomationComponent::AutomationComponent(double idelTimeAvg, double idelTimeRang
 	
 	);
 	this->currentAction = new Action(idle, 0.1f, 0.2f, false);
-	this->currentAgression = new Agression(rest, 0.1f, 0.f);
+	this->currentAgression = new Aggression(rest, 0.1f, 0.f);
 }
 
 void AutomationComponent::initVariables(double idelTimeAvg, double idelTimeRange, double moveTimeAvg, double moveTimeRange, double leftChance, double jumpChance, double chaseChance, bool hasTreadIntention)
@@ -131,7 +131,7 @@ void AutomationComponent::createAgression()
 
 	delete this->currentAgression;
 
-	this->currentAgression = new Agression(newStatus, newTotalAgrssionTime, this->baseAgressTimeGap);
+	this->currentAgression = new Aggression(newStatus, newTotalAgrssionTime, this->baseAgressTimeGap);
 
 }
 

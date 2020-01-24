@@ -12,11 +12,17 @@ void MapState::initMapPlayer()
 	this->checkpoint[1] = new sf::Vector2f(594.f, 382.f);
 	// playground
 	this->checkpoint[2] = new sf::Vector2f(594.f, 38.f);
+	// classroom
 	this->checkpoint[3] = new sf::Vector2f(939.f, 38.f);
+
 	this->checkpoint[4] = new sf::Vector2f(1245.f, 38.f);
+	// library
 	this->checkpoint[5] = new sf::Vector2f(1245.f, 338.f);
+	// farm
 	this->checkpoint[6] = new sf::Vector2f(1245.f, 618.f);
+	// shinemood
 	this->checkpoint[7] = new sf::Vector2f(822.f, 618.f);
+	// college of management
 	this->checkpoint[8] = new sf::Vector2f(822.f, 915.f);
 }
 
@@ -128,17 +134,17 @@ void MapState::updateButtons()
 	//new game
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::F1))
 	{
-		this->states->push(new GameState(this->window, this->supportedKeys, this->states));
+		this->states->push(new GameState_PalmBoulevard(this->window, this->supportedKeys, this->states));
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::F2))
 	{
-		this->states->push(new GameState(this->window, this->supportedKeys, this->states));
+		this->states->push(new GameState_SportsField(this->window, this->supportedKeys, this->states));
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::F3))
-	{
-		this->states->push(new GameState(this->window, this->supportedKeys, this->states));
-	}
+	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::F3))
+	//{
+	//	this->states->push(new GameState(this->window, this->supportedKeys, this->states));
+	//}
 
 	//quit the game
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
@@ -155,7 +161,7 @@ void MapState::update(const float& dt)
 
 	if ((abs(mapPlayer->getPosition().x - this->checkpoint[1]->x) < DIS && abs(mapPlayer->getPosition().y - this->checkpoint[1]->y) < DIS) && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
 	{
-		this->states->push(new GameState_PalmAvenue(this->window, this->supportedKeys, this->states));
+		this->states->push(new GameState_PalmBoulevard(this->window, this->supportedKeys, this->states));
 	}
 	if ((abs(mapPlayer->getPosition().x - this->checkpoint[2]->x) < DIS && abs(mapPlayer->getPosition().y - this->checkpoint[2]->y) < DIS) && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
 	{
@@ -163,24 +169,24 @@ void MapState::update(const float& dt)
 	}
 	if ((abs(mapPlayer->getPosition().x - this->checkpoint[3]->x) < DIS && abs(mapPlayer->getPosition().y - this->checkpoint[3]->y) < DIS) && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
 	{
-		this->states->push(new GameState(this->window, this->supportedKeys, this->states));
+		this->states->push(new GameState_Classroom(this->window, this->supportedKeys, this->states));
 	}
-	if ((abs(mapPlayer->getPosition().x - this->checkpoint[5]->x) < DIS && abs(mapPlayer->getPosition().y - this->checkpoint[5]->y) < DIS) && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
+	/*if ((abs(mapPlayer->getPosition().x - this->checkpoint[5]->x) < DIS && abs(mapPlayer->getPosition().y - this->checkpoint[5]->y) < DIS) && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
 	{
-		this->states->push(new GameState(this->window, this->supportedKeys, this->states));
-	}
+		this->states->push(new GameState_(this->window, this->supportedKeys, this->states));
+	}*/
 	if ((abs(mapPlayer->getPosition().x - this->checkpoint[6]->x) < DIS && abs(mapPlayer->getPosition().y - this->checkpoint[6]->y) < DIS) && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
 	{
-		this->states->push(new GameState(this->window, this->supportedKeys, this->states));
+		this->states->push(new GameState_Farm(this->window, this->supportedKeys, this->states));
 	}
-	if ((abs(mapPlayer->getPosition().x - this->checkpoint[7]->x) < DIS && abs(mapPlayer->getPosition().y - this->checkpoint[7]->y) < DIS) && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
+	/*if ((abs(mapPlayer->getPosition().x - this->checkpoint[7]->x) < DIS && abs(mapPlayer->getPosition().y - this->checkpoint[7]->y) < DIS) && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
 	{
 		this->states->push(new GameState(this->window, this->supportedKeys, this->states));
 	}
 	if ((abs(mapPlayer->getPosition().x - this->checkpoint[8]->x) < DIS && abs(mapPlayer->getPosition().y - this->checkpoint[8]->y) < DIS) && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
 	{
 		this->states->push(new GameState(this->window, this->supportedKeys, this->states));
-	}
+	}*/
 }
 
 void MapState::renderButtons(sf::RenderTarget* target)

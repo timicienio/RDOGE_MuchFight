@@ -6,7 +6,7 @@
 #include "Entities.h"
 
 #include "Action.h"
-#include "Agression.h"
+#include "Aggression.h"
 
 #include "Variables.h"
 
@@ -58,7 +58,7 @@ private:
 	EntityActionStatus actionStatus;
 	
 	Action* currentAction;
-	Agression* currentAgression;
+	Aggression* currentAgression;
 
 
 	// Timers
@@ -94,7 +94,7 @@ public:
 
 	//getters
 	Action* getCurrentAction() { return currentAction; };
-	Agression* getCurrentAgression() { return currentAgression; };
+	Aggression* getCurrentAgression() { return currentAgression; };
 
 };
 

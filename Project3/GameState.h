@@ -1,10 +1,11 @@
 #pragma once
-#include <iostream>
 
 #include "State.h"
+
 #include "Bicycle.h"
 #include "Maisy.h"
 #include "NyanCat.h"
+#include "WickedDoge.h"
 #include "ShuiYuanABe.h"
 
 #include "Platform.h"
@@ -18,11 +19,10 @@
 #include "GameoverState.h"
 #include "SuccessState.h"
 
-
 class GameState :
 	public State
 {
-private:
+protected:
 	sf::Font font;
 	PlayerHealthBar* playerHealthBar;
 	PauseMenu* pmenu;
@@ -42,19 +42,20 @@ private:
 	std::vector<Bicycle*> bicycles;
 	std::vector<Maisy*> maisies;
 	std::vector<NyanCat*> nyanCats;
+	std::vector<WickedDoge*> wickedDoge;
 	std::vector<ShuiYuanABe*> shuiYuanABes;
 
 	// pointer of the boss entity
 	Entity* boss;
 
+	Goal* goal;
 	//// objects
 	// throwables
 	std::vector<BlueFireBall*> blueFireBalls;
-	
-	Goal* goal;
+
 	// platforms
-	std::vector<Platform> grass;
-	std::vector<Platform> dirt;
+	std::vector<Platform> platformWithCollision;
+	std::vector<Platform> platformWithoutCollision;
 
 	// platform index to be erased after defeating the boss
 	unsigned int barrierPlatformIndex;
@@ -69,7 +70,6 @@ private:
 	sf::View view;
 	sf::Vector2f viewCenter;
 
-
 	sf::RectangleShape background;
 
 
@@ -78,16 +78,17 @@ private:
 	void initFonts();
 	void initKeybinds();
 	void initTexture();
-	void initGUI();
 	void initPauseMenu();
 	void initGameoverState();
 	void initSuccessState();
-	
-	
-	void initBackground();
-	void initPlayer();
-	void initPlatform();
-	void initEnemies();
+
+
+	virtual void initBackground() = 0;
+	virtual void initPlatform() = 0;
+	virtual void initEntities() = 0;
+
+	void initGUI();
+
 
 	// platform collision
 	void checkPlatformCollision();
@@ -107,7 +108,7 @@ private:
 	//bool checkHitPlatform(BlueFireBall& blueFireBall);
 	////void checkHitEnemy(); // TODO
 	bool checkHitPlayer(BlueFireBall& blueFireBall);
-	
+
 	// if boss is defeated, erase barrier platform
 	void checkBossDefeated();
 
@@ -117,18 +118,11 @@ private:
 
 	void clearDeadEnemies();
 
-	//bool checkTreading(sf::Vector2f enemyVelocity);
-
-
-
 public:
 
-
-	std::vector<Platform> platforms;
+	// constructor/destructor
 	GameState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states);
-	virtual ~GameState();
-
-	//functions
+	~GameState();
 
 	void updateInput(const float& dt);
 	void updatePlayerInput(const float& dt);
@@ -139,5 +133,5 @@ public:
 	void updateBackground();
 	void update(const float& dt);
 	void render(sf::RenderTarget* target = NULL);
-
 };
+

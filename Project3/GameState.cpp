@@ -1,5 +1,10 @@
 #include "GameState.h"
 
+void GameState::initFonts()
+{
+	this->font.loadFromFile("Fonts/ARCADECLASSIC.ttf");
+}
+
 void GameState::initKeybinds()
 {
 	this->keybinds["CLOSE"] = this->supportedKeys->at("Escape");
@@ -10,14 +15,20 @@ void GameState::initKeybinds()
 
 void GameState::initTexture()
 {
-
 	this->textures["PLAYER_SHEET"].loadFromFile("Resources/images/sprites/Player/DOGE.png");
 	this->textures["GRASS"].loadFromFile("Resources/images/sprites/GrassPart.png");
 	this->textures["DIRT"].loadFromFile("Resources/images/sprites/DirtPart.png");
+	this->textures["DIRT2"].loadFromFile("Resources/images/sprites/DirtPart2.png");
+	this->textures["BLOCK"].loadFromFile("Resources/images/sprites/Block.png");
+	this->textures["BRICK"].loadFromFile("Resources/images/sprites/Brick.png");
+	this->textures["BRICK2"].loadFromFile("Resources/images/sprites/Brick2.png");
+	this->textures["IRON"].loadFromFile("Resources/images/sprites/Iron.png");
+	this->textures["BLOCK"].loadFromFile("Resources/images/sprites/Block.png");
 	this->textures["BACKGROUND"].loadFromFile("Resources/images/background/GameStateBackground.png");
 	this->textures["BICYCLE"].loadFromFile("Resources/images/sprites/Enemy/Bike Spritesheet.png");
 	this->textures["NYANCAT"].loadFromFile("Resources/images/sprites/Enemy/Nyancat Spritesheet fade3.png");
 	this->textures["MAISY"].loadFromFile("Resources/images/sprites/Enemy/maisySpritesheet.png");
+	this->textures["WICKED_DOGE"].loadFromFile("Resources/images/sprites/Enemy/WickedDoge.png");
 	this->textures["ABE"].loadFromFile("Resources/images/sprites/Enemy/ABESpritesheet.png");
 	this->textures["FIREBALL"].loadFromFile("Resources/images/sprites/Attack/Fireball.png");
 	this->textures["HEART"].loadFromFile("Resources/images/sprites/Heart.png");
@@ -33,20 +44,20 @@ void GameState::initPauseMenu()
 {
 	this->pmenu = new PauseMenu(*this->window, this->font, this->player);
 
-	this->pmenu->addButton("QUIT0", this->viewCenter.y + 200.f, "Press	A ");
-	this->pmenu->addButton("QUIT", this->viewCenter.y + 260.f, "TO   QUIT");
+	this->pmenu->addButton("QUIT0", this->viewCenter.y + 200.f, "Press A ");
+	this->pmenu->addButton("QUIT", this->viewCenter.y + 260.f, "to Quit");
 }
 
 void GameState::initGameoverState()
 {
 	this->gover = new GameoverState(*this->window, this->font, this->player);
 
-	this->gover->addButton("QUIT", this->viewCenter.y + 300.f, "PRESS Z TO START NEW GAME");
+	this->gover->addButton("QUIT", this->viewCenter.y + 300.f, "PRESS  Z  TO  START  NEW  GAME");
 }
 
 void GameState::initSuccessState()
 {
-	this->successPoleXCoordinate = 50.f * UNIT_LENGTH;
+	this->successPoleXCoordinate = 284.f * UNIT_LENGTH;
 
 	this->successmenu = new SuccessState(*this->window, this->font, this->player);
 
@@ -54,66 +65,15 @@ void GameState::initSuccessState()
 	this->successmenu->addButton("QUIT1", this->viewCenter.y + 260.f, "TO     CONTINUE");
 }
 
-void GameState::initBackground()
-{
-	this->background.setSize(sf::Vector2f
-	(static_cast<float>(this->window->getSize().x * 1.5f),
-		static_cast<float>(this->window->getSize().y * 1.5f)));
-	this->background.setTexture(&textures["BACKGROUND"]);
-	this->background.setOrigin(this->background.getSize().x / 2, this->background.getSize().y / 3);
-	this->background.setPosition(sf::Vector2f(0.f, 0.f));
-}
-
-void GameState::initPlatform()
-{
-	grass.push_back(Platform(&(this->textures["GRASS"]), sf::Vector2f(4.f, 1.f), sf::Vector2f(13.f, 5.f)));
-	grass.push_back(Platform(&(this->textures["GRASS"]), sf::Vector2f(60.f, 1.f), sf::Vector2f(1.f, 7.f)));
-	//grass.push_back(Platform(&(this->textures["GRASS"]), sf::Vector2f(1000.f, 50.f), sf::Vector2f(-500.f, 600.f)));
-
-	dirt.push_back(Platform(&(this->textures["DIRT"]), sf::Vector2f(21.f, 60.f), sf::Vector2f(1.f, 8.f)));
-	dirt.push_back(Platform(&(this->textures["DIRT"]), sf::Vector2f(35.f, 60.f), sf::Vector2f(26.f, 8.f)));
-
-	goal = new Goal(&(this->textures["GOAL"]), sf::Vector2f(GOAL_WIDTH, GOAL_HEIGHT), sf::Vector2f(2500.f, 200.f));
-	barrierPlatformIndex = 0;
-}
-
-void GameState::initPlayer()
-{
-	this->player = new Player(5.f, 6.f, this->textures["PLAYER_SHEET"], 300.f);
-}
-
-void GameState::initEnemies()
-{
-	// Bicycles
-	bicycles.push_back(new Bicycle(30.f, 3.f, this->textures["BICYCLE"], 0.f));
-	bicycles.push_back(new Bicycle(40.f, 3.f, this->textures["BICYCLE"], 0.f));
-	//bicycles.push_back(new Bicycle(36.f, 3.f, this->textures["BICYCLE"], 0.f));
-
-	// Maisies
-	maisies.push_back(new Maisy(13.f, 4.f, this->textures["MAISY"], 60.f));
-	maisies.push_back(new Maisy(14.f, 4.f, this->textures["MAISY"], 60.f));
-	maisies.push_back(new Maisy(15.f, 4.f, this->textures["MAISY"], 60.f));
-	maisies.push_back(new Maisy(16.f, 4.f, this->textures["MAISY"], 60.f));
-
-	// Nyan Cats
-	nyanCats.push_back(new NyanCat(24.f, 6.f, this->textures["NYANCAT"], 40.f));
-
-	// Shui Yuan A Be's
-	shuiYuanABes.push_back(new ShuiYuanABe(32.f, 0.f, this->textures["ABE"], 80.f));
-
-	// set boss
-	boss = shuiYuanABes[0];
-}
-
 void GameState::checkPlatformCollision()
 {
 
 	sf::Vector2f direction;
 
-	for (Platform& platform : grass) {
-		
+	for (Platform& platform : platformWithCollision) {
+
 		// thorwables
-		
+
 		for (unsigned int i = 0; i < blueFireBalls.size(); ++i)
 		{
 			if (blueFireBalls[i] != nullptr)
@@ -163,6 +123,17 @@ void GameState::checkPlatformCollision()
 				if (platform.getCollider().CheckCollision(nyanCats[i]->getCollider(), direction, 1.f)) 
 				{
 					nyanCats[i]->onCollision(direction);
+				}
+			}
+		}
+
+		for (unsigned int i = 0; i < wickedDoge.size(); ++i)
+		{
+			if (wickedDoge[i] != nullptr)
+			{
+				if (platform.getCollider().CheckCollision(wickedDoge[i]->getCollider(), direction, 1.f)) 
+				{
+					wickedDoge[i]->onCollision(direction);
 				}
 			}
 		}
@@ -231,9 +202,27 @@ void GameState::checkSameTypeEnemyCollision()
 			{
 				if ((nyanCats[j] != nullptr) && (i != j))
 				{
-					if (nyanCats[i]->getCollider().CheckCollision(nyanCats[i]->getCollider(), direction, 1.f)) 
+					if (nyanCats[i]->getCollider().CheckCollision(nyanCats[j]->getCollider(), direction, 1.f)) 
 					{
 						nyanCats[j]->onCollision(direction);
+					}
+				}
+			}
+		}
+	}
+
+	// wicked doge
+	for (unsigned int i = 0; i < wickedDoge.size(); ++i)
+	{
+		if (wickedDoge[i] != nullptr)
+		{
+			for (unsigned int j = 0; j < wickedDoge.size(); ++j)
+			{
+				if ((wickedDoge[j] != nullptr) && (i != j))
+				{
+					if (wickedDoge[i]->getCollider().CheckCollision(wickedDoge[j]->getCollider(), direction, 1.f)) 
+					{
+						wickedDoge[j]->onCollision(direction);
 					}
 				}
 			}
@@ -296,6 +285,17 @@ void GameState::checkPlayerEnemiesCollision()
 		}
 	}
 
+	for (unsigned int i = 0; i < wickedDoge.size(); ++i)
+	{
+		if (wickedDoge[i] != nullptr)
+		{
+			if (this->player->getCollider().CheckCollision(wickedDoge[i]->getCollider(), direction, 1.f)) 
+			{
+				checkDamage(*(wickedDoge[i]), direction);
+			}
+		}
+	}
+
 	for (unsigned int i = 0; i < shuiYuanABes.size(); ++i)
 	{
 		if (shuiYuanABes[i] != nullptr)
@@ -344,14 +344,14 @@ void GameState::checkDamage(Entity& enemy, sf::Vector2f direction)
 
 	else if (this->player->canTakeDamage) // enemy on top
 	{
-			enemy.playerOnEnemyCollision(direction);
+		enemy.playerOnEnemyCollision(direction);
 
-			this->player->playerOnEnemyCollision(direction); // knockback
+		this->player->playerOnEnemyCollision(direction); // knockback
 
-			this->player->getCombatComponent()->takeDamage(enemy.getCombatComponent()->getNearAttack());
+		this->player->getCombatComponent()->takeDamage(enemy.getCombatComponent()->getNearAttack());
 
-			this->player->canTakeDamage = false;
-			this->player->resetTimeSinceHurt();
+		this->player->canTakeDamage = false;
+		this->player->resetTimeSinceHurt();
 	}
 }
 
@@ -420,7 +420,7 @@ void GameState::checkBossDefeated()
 {
 	if ((this->boss == nullptr && !this->erased)) // is deleted
 	{
-		this->grass.erase(grass.begin() + barrierPlatformIndex);
+		this->platformWithCollision.erase(platformWithCollision.begin() + barrierPlatformIndex);
 		this->erased = true;
 	}
 }
@@ -435,14 +435,10 @@ bool GameState::checkSuccess()
 	return false;
 }
 
-//void GameState::checkEnemyThrow(Entity& enemy, sf::Vector2f throwVelocity)
-//{
-//
-//}
 
 void GameState::checkGameOver()
 {
-	if (!(this->player->getCombatComponent()->getIsAlive()) || player->getPosition().y > 10.f * UNIT_LENGTH) // game over
+	if (!(this->player->getCombatComponent()->getIsAlive()) || player->getPosition().y > 27.f * UNIT_LENGTH) // game over
 	{
 		this->gameover = true;
 		//this->states->push(new GameoverState(this->window, this->supportedKeys, this->states));
@@ -481,7 +477,6 @@ void GameState::clearDeadEnemies()
 				this->score += MAISY_SCORE;
 			}
 		}
-
 	}
 
 	for (unsigned int i = 0; i < nyanCats.size(); ++i)
@@ -494,6 +489,20 @@ void GameState::clearDeadEnemies()
 				nyanCats[i] = nullptr;
 
 				this->score += NYANCAT_SCORE;
+			}
+		}
+	}
+
+	for (unsigned int i = 0; i < wickedDoge.size(); ++i)
+	{
+		if (wickedDoge[i] != nullptr)
+		{
+			if (!(wickedDoge[i]->getCombatComponent()->getIsAlive()))
+			{
+				delete wickedDoge[i];
+				wickedDoge[i] = nullptr;
+
+				this->score += WICKED_DOGE_SCORE;
 			}
 		}
 	}
@@ -514,32 +523,10 @@ void GameState::clearDeadEnemies()
 	}
 }
 
-void GameState::initFonts()
+GameState::GameState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states) 
+	: State(window, supportedKeys, states) ,view(sf::Vector2f(0.f,0.f), sf::Vector2f(1920.f,1080.f))
 {
-	this->font.loadFromFile("Fonts/ARCADECLASSIC.ttf");
-	/*if (!this->font.loadFromFile("OpenSans-Light.ttf"));
-	{
-		throw("ERROR::MAINMENUSTATE::COULD NOT LOAD FONT");
-	}*/
-}
 
-
-GameState::GameState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states)
-	: State(window, supportedKeys, states) ,view(sf::Vector2f(0.f,0.f), sf::Vector2f(VIEW_WIDTH, VIEW_HEIGHT))
-{
-	this->initKeybinds();
-	this->initFonts();
-	this->initTexture();
-
-	this->initBackground();
-	this->initPlayer();
-	this->initPlatform();
-	this->initEnemies();
-
-	this->initGUI();
-	this->initPauseMenu();
-	this->initGameoverState();
-	this->initSuccessState();
 }
 
 GameState::~GameState()
@@ -560,6 +547,11 @@ GameState::~GameState()
 	for (unsigned int i = 0; i < nyanCats.size(); ++i)
 	{
 		if (nyanCats[i] != nullptr) delete nyanCats[i];
+	}
+
+	for (unsigned int i = 0; i < wickedDoge.size(); ++i)
+	{
+		if (wickedDoge[i] != nullptr) delete wickedDoge[i];
 	}
 
 	for (unsigned int i = 0; i < shuiYuanABes.size(); ++i)
@@ -636,18 +628,25 @@ void GameState::updateSuccessStateButtons()
 void GameState::updateView()
 {
 	this->viewCenter = player->getPosition();
-	if (this->viewCenter.y < 400.f && this->viewCenter.y > -100.f) {
+
+	//else if (this->viewCenter.y < -100.f) {
+	//	this->viewCenter.y += 200.f;
+	//}
+	//if (this->viewCenter.y > 22.f * UNIT_LENGTH) {
+	//	this->viewCenter.y -= 1000.f;
+	//}
+	if (this->viewCenter.y < 0.f /*&& this->viewCenter.y > -100.f*/) {
 		this->viewCenter.y = 100.f;
 	}
-	else if (this->viewCenter.y < -100.f) {
-		this->viewCenter.y += 200.f;
-	}
-	else if (this->viewCenter.y > 400.f) {
-		this->viewCenter.y -= 300.f;
+	else if(viewCenter.y > 0.f){
+		viewCenter.y -= 100.f;
 	}
 	if (this->viewCenter.x < 1100.f) {
 		this->viewCenter.x = 1100.f;
 	}
+	//	else if (this->viewCenter.x > 300.f) {
+	//		this->viewCenter.x = 300.f;
+	//	}
 	view.setCenter(this->viewCenter);
 }
 
@@ -671,7 +670,7 @@ void GameState::update(const float& dt)
 			successTime += dt;
 
 			if (successTime > 3.f) // stay in game state for a while
-			// push state
+								   // push state
 			{
 				this->success = true;
 			}
@@ -733,9 +732,9 @@ void GameState::update(const float& dt)
 					blueFireBalls[i] = nullptr;
 				}
 			}
-			
+
 		}
-		
+
 		for (unsigned int i = 0; i < bicycles.size(); ++i)
 		{
 			if (bicycles[i] != nullptr)
@@ -800,6 +799,30 @@ void GameState::update(const float& dt)
 			}
 		}
 
+		for (unsigned int i = 0; i < wickedDoge.size(); ++i)
+		{
+			if (wickedDoge[i] != nullptr)
+			{
+				if(wickedDoge[i]->getPosition().x > viewCenter.x - 1200.f && wickedDoge[i]->getPosition().x < viewCenter.x + 1200.f)
+				{
+					// let the enemy "see" the player
+					wickedDoge[i]->getAutomationComponent()->getCurrentAction()->setChaseTargetPosition(this->player->getPosition());
+
+
+					const sf::Vector2f tempMovementOutput = wickedDoge[i]->getAutomationComponent()->getCurrentAction()->getCurrentMovementOutput();
+
+					wickedDoge[i]->move(tempMovementOutput.x, tempMovementOutput.y, dt, wickedDoge[i]->canJump);
+
+					wickedDoge[i]->update(dt);
+
+					if (tempMovementOutput.y == -1.f)
+					{
+						wickedDoge[i]->canJump = false;
+					}
+				}
+			}
+		}
+
 		for (unsigned int i = 0; i < shuiYuanABes.size(); ++i)
 		{
 			if (shuiYuanABes[i] != nullptr)
@@ -823,8 +846,8 @@ void GameState::update(const float& dt)
 				}
 			}
 		}
-		
 	}
+
 	else if (this->success == true)
 	{
 		this->updateSuccessStateButtons();
@@ -834,7 +857,8 @@ void GameState::update(const float& dt)
 		this->updatePauseMenuButtons();
 		this->updateGameoverStateButtons();
 	}
-	this->goal->updateGoal(dt, checkSuccess());
+
+	this->goal->updateGoal(dt, this->checkSuccess());
 
 	// clear dead enemies
 	this->clearDeadEnemies();
@@ -854,23 +878,36 @@ void GameState::update(const float& dt)
 
 	// check if there's new throwables being generated
 	this->checkThrow();
-	
+
 	// update player-specific variables
 	this->player->updateStatus(dt);
 
-	// update boss
-	for (unsigned int i = 0; i < shuiYuanABes.size(); i++)
+	// update enemies with > 1 health
+	for (unsigned int i = 0; i < nyanCats.size(); i++)
 	{
 		if (nyanCats[i] != nullptr)
 		{
 			this->nyanCats[i]->updateStatus(dt);
 		}
+	}
 
+	for (unsigned int i = 0; i < wickedDoge.size(); i++)
+	{
+		if (wickedDoge[i] != nullptr)
+		{
+			this->wickedDoge[i]->updateStatus(dt);
+		}
+	}
+
+	for (unsigned int i = 0; i < shuiYuanABes.size(); i++)
+	{
 		if (shuiYuanABes[i] != nullptr)
 		{
 			this->shuiYuanABes[i]->updateStatus(dt);
 		}
 	}
+
+
 
 
 	// check game over
@@ -892,12 +929,13 @@ void GameState::render(sf::RenderTarget* target)
 	target->setView(this->view);
 	target->draw(this->background);
 
-	
-	for (Platform& platform : dirt)
+
+	for (Platform& platform : platformWithoutCollision)
 	{
 		platform.render(target);
 	}
-	for (Platform& platform : grass) 
+
+	for (Platform& platform : platformWithCollision) 
 	{
 		platform.render(target);
 	}
@@ -929,6 +967,12 @@ void GameState::render(sf::RenderTarget* target)
 			nyanCats[i]->render(target);
 	}
 
+	for (unsigned int i = 0; i < wickedDoge.size(); i++)
+	{
+		if (wickedDoge[i] != nullptr)
+			wickedDoge[i]->render(target);
+	}
+
 	for (unsigned int i = 0; i < shuiYuanABes.size(); i++)
 	{
 		if (shuiYuanABes[i] != nullptr)
@@ -942,7 +986,7 @@ void GameState::render(sf::RenderTarget* target)
 	if (this->paused) //pause state
 	{
 		this->pmenu->render(*target);
-		
+
 	}
 	else if (this->gameover)
 	{

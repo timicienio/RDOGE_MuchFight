@@ -59,6 +59,12 @@ public:
 
 	// component getters
 	Collider getCollider() { return Collider(body); }
+
+
+
+
+
+
 	MovementComponent* getMovementComponent() { return movementComponent; };
 	CombatComponent* getCombatComponent() { return combatComponent; };
 	AutomationComponent* getAutomationComponent() { return automationComponent; };
