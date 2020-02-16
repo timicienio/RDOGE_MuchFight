@@ -11,9 +11,9 @@ private:
 	//status
 
 	//time since the last time the entity took damage
-	double timeSinceHurt = 0.f;
+	float timeSinceHurt = 0.f;
 	//minimum time between taking damage
-	double minHurtTimeGap = 3.f;
+	float minHurtTimeGap = 3.f;
 
 
 	//initializer functions
@@ -21,8 +21,8 @@ private:
 	void initComponents();
 
 	// implement flicker
-	const double flickerTimeGap = 0.1f;
-	double currentFlickerTime = 0.f;
+	const float flickerTimeGap = 0.1f;
+	float currentFlickerTime = 0.f;
 	bool flickerNoRender;
 
 	float currenDt = 0.f;

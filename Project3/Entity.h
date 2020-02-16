@@ -44,8 +44,8 @@ public:
 		unsigned int jumpingWidth,
 		unsigned int jumpingHeight);
 	void createMovementComponent(const float maxVelocity, const float acceleration, const float deceleration, float jumpHeight);
-	void createCombatComponent(int maxHealth, int nearAttackDamage, int farAttackDamage, double farAttackCDTime, double farAttackRange, bool isPlayer);
-	void createAutomationComponent(double idelTimeAvg, double idelTimeRange, double moveTimeAvg, double moveTimeRange, double leftChance, double jumpChance, double chaseChance, bool hasTreadIntention, double restTimeGapAvg, double restTimeGapRange, double agressTimeGapAvg, double agressTimeGapRange, double baseAgressTimeGap, double lightChance, double heavyChance, double allOutChance);
+	void createCombatComponent(int maxHealth, int nearAttackDamage, int farAttackDamage, float farAttackCDTime, float farAttackRange, bool isPlayer);
+	void createAutomationComponent(float idelTimeAvg, float idelTimeRange, float moveTimeAvg, float moveTimeRange, float leftChance, float jumpChance, float chaseChance, bool hasTreadIntention, float restTimeGapAvg, float restTimeGapRange, float agressTimeGapAvg, float agressTimeGapRange, float baseAgressTimeGap, float lightChance, float heavyChance, float allOutChance);
 
 	// updating functions
 	virtual void setPosition(const float x, const float y);

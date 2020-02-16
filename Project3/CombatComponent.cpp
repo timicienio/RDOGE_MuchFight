@@ -1,7 +1,7 @@
 #include "CombatComponent.h"
 
 
-CombatComponent::CombatComponent(int maxHealth, int nearAttackDamage, int farAttackDamage, double farAttackCDTime, double farAttackRange, bool isPlayer) {
+CombatComponent::CombatComponent(int maxHealth, int nearAttackDamage, int farAttackDamage, float farAttackCDTime, float farAttackRange, bool isPlayer) {
 
 	this->initVariables(maxHealth, nearAttackDamage, farAttackDamage, farAttackCDTime, farAttackRange, isPlayer);
 }
@@ -27,15 +27,15 @@ void CombatComponent::takeDamage(int damage)
 }
 
 void CombatComponent::initVariables(int maxHealth, int nearAttackDamage,
-                                    int farAttackDamage, double farAttackCDTime,
-                                    double farAttackRange, bool isPlayer) 
+                                    int farAttackDamage, float farAttackCDTime,
+                                    float farAttackRange, bool isPlayer) 
 {
 
     this->maxHealth = maxHealth;
     this->health = maxHealth;
     this->nearAttackDamage = nearAttackDamage;
     this->farAttackDamage = farAttackDamage;
-    this->farAttackCDTime = farAttackDamage;
+    this->farAttackCDTime = farAttackCDTime;
     this->farAttackRange = farAttackRange;
     this->isPlayer = isPlayer;
 

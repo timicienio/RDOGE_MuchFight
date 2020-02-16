@@ -10,12 +10,12 @@ private:
 
 	EntityActionStatus typeOfAction;
 
-	double totalActionTime;
-	double currentActionTime = 0.f;
-	double jumpTime;
+	float totalActionTime;
+	float currentActionTime = 0.f;
+	float jumpTime;
 
-	double treadRestTime = 3.f;
-	double currentRestTime = 4.f;
+	float treadRestTime = 3.f;
+	float currentRestTime = 4.f;
 
 	sf::Vector2f currentChaseTargetPosition;
 
@@ -29,7 +29,7 @@ public:
 
 	bool hasTreadIntention;
 
-	Action(EntityActionStatus typeOfAction, double totalActionTime, double jumpTime, bool hasTreadIntention);
+	Action(EntityActionStatus typeOfAction, float totalActionTime, float jumpTime, bool hasTreadIntention);
 	~Action();
 
 	//Updates

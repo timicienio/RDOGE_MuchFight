@@ -13,7 +13,7 @@ Platform::Platform(sf::Texture* texture, sf::Vector2f size, sf::Vector2f positio
 	body.setOrigin(size / 2.f);
 	texture->setRepeated(true);
 	body.setTexture(texture);
-	body.setTextureRect(sf::IntRect(0, 0, body.getSize().x * 16 / 50, body.getSize().y * 16 / 50));
+	body.setTextureRect(sf::IntRect(0, 0, (int)(body.getSize().x * 16 / 50), (int)(body.getSize().y * 16 / 50)));
 
 	position.x += size.x / 2;
 	position.y += size.y / 2;

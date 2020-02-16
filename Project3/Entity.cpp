@@ -43,14 +43,14 @@ void Entity::createMovementComponent(const float maxVelocity, const float accele
 
 }
 
-void Entity::createCombatComponent(int maxHealth, int nearAttackDamage, int farAttackDamage, double farAttackCDTime, double farAttackRange, bool isPlayer)
+void Entity::createCombatComponent(int maxHealth, int nearAttackDamage, int farAttackDamage, float farAttackCDTime, float farAttackRange, bool isPlayer)
 {
 
 	this->combatComponent = new CombatComponent(maxHealth, nearAttackDamage, farAttackDamage, farAttackCDTime, farAttackRange, isPlayer);
 
 }
 
-void Entity::createAutomationComponent(double idelTimeAvg, double idelTimeRange, double moveTimeAvg, double moveTimeRange, double leftChance, double jumpChance, double chaseChance, bool hasTreadIntention, double restTimeGapAvg, double restTimeGapRange, double agressTimeGapAvg, double agressTimeGapRange, double baseAgressTimeGap, double lightChance, double heavyChance, double allOutChance)
+void Entity::createAutomationComponent(float idelTimeAvg, float idelTimeRange, float moveTimeAvg, float moveTimeRange, float leftChance, float jumpChance, float chaseChance, bool hasTreadIntention, float restTimeGapAvg, float restTimeGapRange, float agressTimeGapAvg, float agressTimeGapRange, float baseAgressTimeGap, float lightChance, float heavyChance, float allOutChance)
 {
 
 	this->automationComponent = new AutomationComponent(idelTimeAvg, idelTimeRange, moveTimeAvg, moveTimeRange, leftChance, jumpChance, chaseChance, hasTreadIntention, restTimeGapAvg, restTimeGapRange, agressTimeGapAvg, agressTimeGapRange, baseAgressTimeGap, lightChance, heavyChance, allOutChance);

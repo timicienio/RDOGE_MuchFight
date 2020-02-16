@@ -12,11 +12,11 @@ class Aggression
 private:
 
 	EntityAgressionStatus typeOfAgression;
-	double totalAgressionTime;
-	double baseAgressTimeGap = 0.f;
+	float totalAgressionTime;
+	float baseAgressTimeGap = 0.f;
 
-	double currentAgressionTime = 0.f;
-	double currenRestTime = 0.f;
+	float currentAgressionTime = 0.f;
+	float currenRestTime = 0.f;
 
 	sf::Vector2f currentAgressOutput;
 
@@ -28,7 +28,7 @@ public:
 
 
 	// constructor/destructor
-	Aggression(EntityAgressionStatus typeOfAgression, double totalAgressionTime, double baseAgressTimeGap);
+	Aggression(EntityAgressionStatus typeOfAgression, float totalAgressionTime, float baseAgressTimeGap);
 	~Aggression();
 
 	// updates

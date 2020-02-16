@@ -44,25 +44,25 @@ class CombatComponent {
      int farAttackDamage;
 
      // Cool Down time of attack type
-     double farAttackCDTime;
+     float farAttackCDTime;
 
      // time since the last attack
-     double farAttackTimeGap;
+     float farAttackTimeGap;
 
      // range of far attack
-     double farAttackRange;
+     float farAttackRange;
 
      // within this distance, contact damage takes effect
-     double contactRange;
+     float contactRange;
 
  public:
 
 
-     void initVariables(int maxHealth, int nearAttackDamage, int farAttackDamage, double farAttackCDTime, double farAttackRange, bool isPlayer);
+     void initVariables(int maxHealth, int nearAttackDamage, int farAttackDamage, float farAttackCDTime, float farAttackRange, bool isPlayer);
 
 
      // Constructors/Destructors
-     CombatComponent(int maxHealth, int nearAttackDamage, int farAttackDamage, double farAttackCDTime, double farAttackRange, bool isPlayer);
+     CombatComponent(int maxHealth, int nearAttackDamage, int farAttackDamage, float farAttackCDTime, float farAttackRange, bool isPlayer);
 
      ~CombatComponent();
 
@@ -80,7 +80,7 @@ class CombatComponent {
 
      int getNearAttack() { return nearAttackDamage; };
      int getFarAttack() { return farAttackDamage; };
-     double getFarAttackRange() { return farAttackRange; };
+     float getFarAttackRange() { return farAttackRange; };
 
      bool getIsAlive() { return isAlive; };
      bool getIsPlayer() { return isPlayer; };

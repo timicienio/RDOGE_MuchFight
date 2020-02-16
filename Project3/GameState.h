@@ -31,7 +31,7 @@ protected:
 
 	int score = 0;
 	bool setted = false;
-	double timeInGame = 0.f;
+	float timeInGame = 0.f;
 
 
 	//// entities
@@ -62,9 +62,9 @@ protected:
 	bool erased = false;
 
 	// x coordinate for success pole
-	double successPoleXCoordinate;
+	float successPoleXCoordinate;
 
-	double successTime = 0.f;
+	float successTime = 0.f;
 
 	sf::Texture texture;
 	sf::View view;

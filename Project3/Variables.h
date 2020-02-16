@@ -6,7 +6,7 @@ static const float VIEW_HEIGHT = 1080.f;
 static const float PLAYER_WIDTH = 50.f * 2;
 static const float PLAYER_HEIGHT = 50.f * 2;
 
-static const double UNIT_LENGTH = 50.f;
+static const float UNIT_LENGTH = 50.f;
 
 static const unsigned int IDLE_WIDTH = 49;
 static const unsigned int IDLE_HEIGHT = 45;

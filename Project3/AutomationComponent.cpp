@@ -1,6 +1,6 @@
 #include "AutomationComponent.h"
 
-AutomationComponent::AutomationComponent(double idelTimeAvg, double idelTimeRange, double moveTimeAvg, double moveTimeRange, double leftChance, double jumpChance, double chaseChance, bool hasTreadIntention, double restTimeGapAvg, double restTimeGapRange, double agressTimeGapAvg, double agressTimeGapRange, double baseAgressTimeGap, double lightChance, double heavyChance, double allOutChance) 
+AutomationComponent::AutomationComponent(float idelTimeAvg, float idelTimeRange, float moveTimeAvg, float moveTimeRange, float leftChance, float jumpChance, float chaseChance, bool hasTreadIntention, float restTimeGapAvg, float restTimeGapRange, float agressTimeGapAvg, float agressTimeGapRange, float baseAgressTimeGap, float lightChance, float heavyChance, float allOutChance) 
 {
 	initVariables(idelTimeAvg, idelTimeRange, moveTimeAvg, moveTimeRange, leftChance, jumpChance, chaseChance, hasTreadIntention);
 	initAgressionVariables(restTimeGapAvg, restTimeGapRange, agressTimeGapAvg, agressTimeGapRange, baseAgressTimeGap, lightChance, heavyChance, allOutChance
@@ -10,7 +10,7 @@ AutomationComponent::AutomationComponent(double idelTimeAvg, double idelTimeRang
 	this->currentAgression = new Aggression(rest, 0.1f, 0.f);
 }
 
-void AutomationComponent::initVariables(double idelTimeAvg, double idelTimeRange, double moveTimeAvg, double moveTimeRange, double leftChance, double jumpChance, double chaseChance, bool hasTreadIntention)
+void AutomationComponent::initVariables(float idelTimeAvg, float idelTimeRange, float moveTimeAvg, float moveTimeRange, float leftChance, float jumpChance, float chaseChance, bool hasTreadIntention)
 {
 	this->idelTimeGapAvg = idelTimeAvg;
 	this->idelTimeGapRange = idelTimeRange;
@@ -24,7 +24,7 @@ void AutomationComponent::initVariables(double idelTimeAvg, double idelTimeRange
 	this->hasTreadIntention = hasTreadIntention;
 }
 
-void AutomationComponent::initAgressionVariables(double restTimeGapAvg, double restTimeGapRange, double agressTimeGapAvg, double agressTimeGapRange, double baseAgressTimeGap, double lightChance, double heavyChance, double allOutChance)
+void AutomationComponent::initAgressionVariables(float restTimeGapAvg, float restTimeGapRange, float agressTimeGapAvg, float agressTimeGapRange, float baseAgressTimeGap, float lightChance, float heavyChance, float allOutChance)
 {
 	this->restTimeGapAvg = restTimeGapAvg;
 	this->restTimeGapRange = restTimeGapRange;
@@ -41,8 +41,8 @@ void AutomationComponent::initAgressionVariables(double restTimeGapAvg, double r
 void AutomationComponent::createAction()
 {
 	EntityActionStatus newStatus;
-	double newTotalActionTime;
-	double newJumpTime;
+	float newTotalActionTime;
+	float newJumpTime;
 
 
 	// decide type of the next action
@@ -95,14 +95,14 @@ void AutomationComponent::createAction()
 void AutomationComponent::createAgression()
 {
 	EntityAgressionStatus newStatus;
-	double newTotalAgrssionTime;
+	float newTotalAgrssionTime;
 
 	// determine next agression type and config
 
-	double randNum = distribution(gen);
-	double randNumNeg = distributionNeg(gen);
+	float randNum = distribution(gen);
+	float randNumNeg = distributionNeg(gen);
 
-	double restChance = 1.f - this->lightChance - this->heavyChance - this->allOutChance;
+	float restChance = 1.f - this->lightChance - this->heavyChance - this->allOutChance;
 
 	if (randNum < restChance) // rest
 	{

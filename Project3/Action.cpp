@@ -1,6 +1,6 @@
 #include "Action.h"
 
-Action::Action(EntityActionStatus typeOfAction, double totalActionTime, double jumpTime, bool hasTreadIntention)
+Action::Action(EntityActionStatus typeOfAction, float totalActionTime, float jumpTime, bool hasTreadIntention)
 {
 	this->typeOfAction = typeOfAction;
 	this->totalActionTime = totalActionTime;

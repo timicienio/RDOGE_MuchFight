@@ -1,6 +1,6 @@
 #include "BlueFireBall.h"
 
-void BlueFireBall::initVariables(sf::Vector2f position, sf::Vector2f size, sf::Vector2f velocity, int damage, double range)
+void BlueFireBall::initVariables(sf::Vector2f position, sf::Vector2f size, sf::Vector2f velocity, int damage, float range)
 {
 	this->position = position;
 	this->velocity = velocity;
@@ -27,7 +27,7 @@ void BlueFireBall::move(const float& dt)
 	this->body.move(this->velocity * dt);
 }
 
-BlueFireBall::BlueFireBall(sf::Texture* texture, sf::Vector2f size, sf::Vector2f position, sf::Vector2f velocity, int damage, double range)
+BlueFireBall::BlueFireBall(sf::Texture* texture, sf::Vector2f size, sf::Vector2f position, sf::Vector2f velocity, int damage, float range)
 {
 	this->initVariables(position, size, velocity, damage, range);
 	this->initAnimation(*texture);

@@ -11,7 +11,7 @@ void Maisy::initComponents()
 {
 	this->createMovementComponent(160.f, 20.f, 3.f, this->jumpHeight);
 	this->createCombatComponent(1, 1, 1, 4.f, 500.f, false);
-	this->createAutomationComponent(0.6, 0.3, 5.f, 2.f, 0.5, 0.3, 0.7, true, 3600.f, 0.f, 0.f, 0.f, 3600.f, 0.f, 0.f, 0.f);
+	this->createAutomationComponent(0.6f, 0.3f, 5.f, 2.f, 0.5f, 0.3f, 0.7f, true, 3600.f, 0.f, 0.f, 0.f, 3600.f, 0.f, 0.f, 0.f);
 }
 
 

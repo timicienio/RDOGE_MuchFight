@@ -1,6 +1,6 @@
 #include "Aggression.h"
 
-Aggression::Aggression(EntityAgressionStatus typeOfAgression, double totalAgressionTime, double baseAgressTimeGap)
+Aggression::Aggression(EntityAgressionStatus typeOfAgression, float totalAgressionTime, float baseAgressTimeGap)
 {
 	this->typeOfAgression = typeOfAgression;
 	this->totalAgressionTime = totalAgressionTime;

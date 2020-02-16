@@ -13,19 +13,19 @@ class BlueFireBall
 private:
 
 	// initializer
-	void initVariables(sf::Vector2f position, sf::Vector2f size, sf::Vector2f velocity, int damage, double range);
+	void initVariables(sf::Vector2f position, sf::Vector2f size, sf::Vector2f velocity, int damage, float range);
 	void initAnimation(sf::Texture& texture);
 
 	// movement informations & states
 
-	const double baseVelocity = 7.5f * UNIT_LENGTH;
+	const float baseVelocity = 7.5f * UNIT_LENGTH;
 
 	sf::Vector2f velocity;
 	sf::Vector2f position;
 
 
-	double range;
-	double currentTravelDistance = 0.f;
+	float range;
+	float currentTravelDistance = 0.f;
 
 
 	// damage information
@@ -45,7 +45,7 @@ private:
 public:
 
 	//constructor
-	BlueFireBall(sf::Texture* texture, sf::Vector2f size, sf::Vector2f position, sf::Vector2f velocity, int damage, double range);
+	BlueFireBall(sf::Texture* texture, sf::Vector2f size, sf::Vector2f position, sf::Vector2f velocity, int damage, float range);
 	~BlueFireBall();
 
 	//a draw function for the object

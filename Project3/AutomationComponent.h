@@ -22,36 +22,36 @@ private:
 
 	// Action
 
-	double idelTimeGapAvg;
-	double idelTimeGapRange;
+	float idelTimeGapAvg;
+	float idelTimeGapRange;
 
-	double moveTimeGapAvg;
-	double moveTimeGapRange;
+	float moveTimeGapAvg;
+	float moveTimeGapRange;
 
 
 	// The chance of the entity decide to move towards left when wandering
-	double leftChance;
+	float leftChance;
 	// The chance of the entity decide to jump in every movement
-	double jumpChance;
+	float jumpChance;
 	// The chance of the entity chasing the player instead of wandering
-	double chaseChance;
+	float chaseChance;
 
 	// If this entity has the intention of treading the player
 	bool hasTreadIntention;
 
 	// Agression
 
-	double restTimeGapAvg;
-	double restTimeGapRange;
+	float restTimeGapAvg;
+	float restTimeGapRange;
 
-	double agressTimeGapAvg;
-	double agressTimeGapRange;
+	float agressTimeGapAvg;
+	float agressTimeGapRange;
 
-	double baseAgressTimeGap;
+	float baseAgressTimeGap;
 
-	double lightChance;
-	double heavyChance;
-	double allOutChance;
+	float lightChance;
+	float heavyChance;
+	float allOutChance;
 	
 
 	// Status
@@ -62,20 +62,20 @@ private:
 
 
 	// Timers
-	double timeSinceSpawn;
+	float timeSinceSpawn;
 
 	// Random
 	std::random_device rd;
 	std::default_random_engine gen = std::default_random_engine(rd());
 
-	std::uniform_real_distribution<double> distribution{ 0.0, 1.0 };
-	std::uniform_real_distribution<double> distributionNeg{ -1.0, 1.0 };
+	std::uniform_real_distribution<float> distribution{ 0.0, 1.0 };
+	std::uniform_real_distribution<float> distributionNeg{ -1.0, 1.0 };
 
 	////Functions
 	//Initializer
-	void initVariables(double idelTimeAvg, double idelTimeRange, double moveTimeAvg, double moveTimeRange, double leftChance, double jumpChance, double chaseChance, bool hasTreadIntention);
+	void initVariables(float idelTimeAvg, float idelTimeRange, float moveTimeAvg, float moveTimeRange, float leftChance, float jumpChance, float chaseChance, bool hasTreadIntention);
 
-	void initAgressionVariables(double restTimeGapAvg, double restTimeGapRange, double agressTimeGapAvg, double agressTimeGapRange, double baseAgressTimeGap, double lightChance, double heavyChance, double allOutChance);
+	void initAgressionVariables(float restTimeGapAvg, float restTimeGapRange, float agressTimeGapAvg, float agressTimeGapRange, float baseAgressTimeGap, float lightChance, float heavyChance, float allOutChance);
 
 	// Action
 	void createAction();
@@ -85,7 +85,7 @@ private:
 
 public:
 	//Constructor/Destructor
-	AutomationComponent(double idelTimeAvg, double idelTimeRange, double moveTimeAvg, double moveTimeRange, double leftChance, double jumpChance, double chaseChance, bool hasTreadIntention, double restTimeGapAvg, double restTimeGapRange, double agressTimeGapAvg, double agressTimeGapRange, double baseAgressTimeGap, double lightChance, double heavyChance, double allOutChance);
+	AutomationComponent(float idelTimeAvg, float idelTimeRange, float moveTimeAvg, float moveTimeRange, float leftChance, float jumpChance, float chaseChance, bool hasTreadIntention, float restTimeGapAvg, float restTimeGapRange, float agressTimeGapAvg, float agressTimeGapRange, float baseAgressTimeGap, float lightChance, float heavyChance, float allOutChance);
 	~AutomationComponent();
 
 
