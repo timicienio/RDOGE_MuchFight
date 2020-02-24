@@ -142,33 +142,33 @@ void Entity::resetTimeSinceHurt()
 void Entity::onCollision(sf::Vector2f direction)
 {
 	if (direction.x > 0) {
-		movementComponent->getVelocity().x = 0;
+		movementComponent->velocity.x = 0;
 	}
 	if (direction.x < 0) {
-		movementComponent->getVelocity().x = 0;
+		movementComponent->velocity.x = 0;
 	}
 	if (direction.y < 0) {
-		movementComponent->getVelocity().y = 0;
+		movementComponent->velocity.y = 0;
 		canJump = true;
 	}
 	if (direction.y > 0) {
-		movementComponent->getVelocity().y = 0;
+		movementComponent->velocity.y = 0;
 	}
 }
 
 void Entity::playerOnEnemyCollision(sf::Vector2f direction)
 {
 	if (direction.x > 0) {
-		movementComponent->getVelocity().x = -direction.x * 0.6f * KNOCKBACK_VELOCITY;
+		movementComponent->velocity.x = -direction.x * 0.6f * KNOCKBACK_VELOCITY;
 	}
 	if (direction.x < 0) {
-		movementComponent->getVelocity().x = -direction.x * 0.6f * KNOCKBACK_VELOCITY;
+		movementComponent->velocity.x = -direction.x * 0.6f * KNOCKBACK_VELOCITY;
 	}
 	if (direction.y < 0) {
-		movementComponent->getVelocity().y = -direction.y * 0.6f * KNOCKBACK_VELOCITY_VERTICAL;
+		movementComponent->velocity.y = -direction.y * 0.6f * KNOCKBACK_VELOCITY_VERTICAL;
 		canJump = true;
 	}
 	if (direction.y > 0) {
-		movementComponent->getVelocity().y = -direction.y * 0.6f * KNOCKBACK_VELOCITY_VERTICAL;
+		movementComponent->velocity.y = -direction.y * 0.6f * KNOCKBACK_VELOCITY_VERTICAL;
 	}
 }

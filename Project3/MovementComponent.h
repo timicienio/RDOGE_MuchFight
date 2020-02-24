@@ -1,5 +1,4 @@
-#ifndef MOVEMENTCOMPONENT_H
-#define MOVEMENTCOMPONENT_H
+#pragma once
 
 #include<vector>
 #include<iostream>
@@ -40,7 +39,7 @@ public:
 	~MovementComponent();
 
 	//accessors
-	sf::Vector2f& getVelocity();
+	const sf::Vector2f& getVelocity()const;
 
 
 
@@ -51,6 +50,5 @@ public:
 
 	void playerJumpModification(const float dir_y, const float& dt, bool& canJump);
 
+	friend class Entity;
 };
-
-#endif

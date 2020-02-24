@@ -629,24 +629,21 @@ void GameState::updateView()
 {
 	this->viewCenter = player->getPosition();
 
-	//else if (this->viewCenter.y < -100.f) {
-	//	this->viewCenter.y += 200.f;
-	//}
-	//if (this->viewCenter.y > 22.f * UNIT_LENGTH) {
-	//	this->viewCenter.y -= 1000.f;
-	//}
-	if (this->viewCenter.y < 0.f /*&& this->viewCenter.y > -100.f*/) {
-		this->viewCenter.y = 100.f;
+	float upperBound = 700.f;
+	float lowerBound = 1500.f;
+	float center = 900.f;
+	if (this->viewCenter.y > upperBound && this->viewCenter.y < lowerBound) {
+		this->viewCenter.y = center;
 	}
-	else if(viewCenter.y > 0.f){
-		viewCenter.y -= 100.f;
+	else if(this->viewCenter.y <= upperBound){
+		this->viewCenter.y += (center - upperBound);
+	}
+	else if(this->viewCenter.y >= lowerBound){
+		this->viewCenter.y -= (lowerBound - center);
 	}
 	if (this->viewCenter.x < 1100.f) {
 		this->viewCenter.x = 1100.f;
 	}
-	//	else if (this->viewCenter.x > 300.f) {
-	//		this->viewCenter.x = 300.f;
-	//	}
 	view.setCenter(this->viewCenter);
 }
 

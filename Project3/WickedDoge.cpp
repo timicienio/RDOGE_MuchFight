@@ -11,7 +11,7 @@ void WickedDoge::initComponents()
 {
 	this->createMovementComponent(200.f, 30.f, 10.f, this->jumpHeight);
 	this->createCombatComponent(2, 1, 1, -1.f, 3600.f, false);
-	this->createAutomationComponent(1.5f, 0.3, 5.f, 2.f, 0.5, 0.9, 0.3, false, 3600.f, 0.f, 0.f, 0.f, 3600.f, 0.f, 0.f, 0.f);
+	this->createAutomationComponent(1.5f, 0.3f, 5.f, 2.f, 0.5f, 0.9f, 0.3f, false, 3600.f, 0.f, 0.f, 0.f, 3600.f, 0.f, 0.f, 0.f);
 }
 
 
