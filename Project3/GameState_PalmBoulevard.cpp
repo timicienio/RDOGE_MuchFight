@@ -201,7 +201,7 @@ void GameState_PalmBoulevard::initPlatform()
 
 void GameState_PalmBoulevard::initEntities()
 {
-	this->player = new Player(5.f, 24.f, this->textures["PLAYER_SHEET"], 300.f);
+	this->player = new Player(5.f, 24.f, this->textures["PLAYER_SHEET"], 200.f);
 	
 	nyanCats.push_back(new NyanCat(58.f, 10.f, this->textures["NYANCAT"], 20.f));
 	nyanCats.push_back(new NyanCat(63.f, 10.f, this->textures["NYANCAT"], 20.f));

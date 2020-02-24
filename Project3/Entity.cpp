@@ -95,7 +95,7 @@ void Entity::update(const float& dt)
 				}
 			}
 			float animationTime;
-			if (canJump) {
+			if (canJump && movementComponent->getJumpedOnce() == false) {
 				//deciding the speed of the animation
 				if (animationRow == 0) {
 					animationTime = dt * 0.2f;
@@ -150,6 +150,7 @@ void Entity::onCollision(sf::Vector2f direction)
 	if (direction.y < 0) {
 		movementComponent->velocity.y = 0;
 		canJump = true;
+		movementComponent->resetDoubleJump();
 	}
 	if (direction.y > 0) {
 		movementComponent->velocity.y = 0;
@@ -165,10 +166,11 @@ void Entity::playerOnEnemyCollision(sf::Vector2f direction)
 		movementComponent->velocity.x = -direction.x * 0.6f * KNOCKBACK_VELOCITY;
 	}
 	if (direction.y < 0) {
-		movementComponent->velocity.y = -direction.y * 0.6f * KNOCKBACK_VELOCITY_VERTICAL;
+		movementComponent->velocity.y = direction.y * 0.6f * KNOCKBACK_VELOCITY_VERTICAL;
 		canJump = true;
+		movementComponent->resetDoubleJump();
 	}
 	if (direction.y > 0) {
-		movementComponent->velocity.y = -direction.y * 0.6f * KNOCKBACK_VELOCITY_VERTICAL;
+		movementComponent->velocity.y = direction.y * 0.6f * KNOCKBACK_VELOCITY_VERTICAL;
 	}
 }

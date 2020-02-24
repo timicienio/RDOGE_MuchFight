@@ -2,7 +2,7 @@
 
 MovementComponent::MovementComponent(sf::RectangleShape& body,
 	float maxVelocity, float acceleration, float deceleration, float jumpHeight)
-	: body(body), maxVelocity(maxVelocity), acceleration(acceleration), deceleration(deceleration), jumpHeight(jumpHeight), canJump(false)
+	: body(body), maxVelocity(maxVelocity), acceleration(acceleration), deceleration(deceleration), jumpHeight(jumpHeight), canJump(false), jumpedOnce(true)
 {
 }
 
@@ -20,10 +20,14 @@ const sf::Vector2f& MovementComponent::getVelocity()const
 void MovementComponent::move(const float dir_x, const float dir_y, const float& dt, bool& canJump)
 {
 	if (velocity.y != 0.f) {
-		canJump = false;
+		this->jumpedOnce = true;
 	}
 	if (dir_y < 0 && canJump) {
+		if (this->jumpedOnce) {
+			canJump = false;
+		}
 		velocity.y = -sqrt(2 * GRAVITY * jumpHeight);
+		this->jumpedOnce = true;
 	}
 	//acceleration
 	if(canJump){
@@ -64,7 +68,7 @@ void MovementComponent::update(const float& dt)
 			if (this->velocity.x > this->maxVelocity)
 				this->velocity.x = this->maxVelocity;
 
-			this->velocity.x -= deceleration / 1.5f;
+			this->velocity.x -= deceleration / 2.f;
 			if (this->velocity.x < 0.f)
 				velocity.x = 0.f;
 		}
@@ -73,7 +77,7 @@ void MovementComponent::update(const float& dt)
 			if (this->velocity.x < -this->maxVelocity)
 				this->velocity.x = -this->maxVelocity;
 
-			this->velocity.x += deceleration / 1.5f;
+			this->velocity.x += deceleration / 2.f;
 			if (this->velocity.x > 0.f)
 				velocity.x = 0.f;
 		}
@@ -87,6 +91,11 @@ void MovementComponent::update(const float& dt)
 	//final move
 	//std::cout << "move" << "\n";
 	this->body.move(this->velocity * dt); //use velocity
+}
+
+void MovementComponent::resetDoubleJump()
+{
+	this->jumpedOnce = false;
 }
 
 void MovementComponent::playerJumpModification(const float dir_y, const float& dt, bool& canJump)

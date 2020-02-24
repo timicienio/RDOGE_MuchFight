@@ -15,6 +15,9 @@ private:
 	sf::Font font;
 	sf::View view;
 
+	bool jumpKeyStateFlag;
+	bool previousKeyState;
+
 	Player* player;
 
 	Button* flashButton;

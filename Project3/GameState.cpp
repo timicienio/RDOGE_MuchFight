@@ -72,7 +72,7 @@ void GameState::checkPlatformCollision()
 
 	for (Platform& platform : platformWithCollision) {
 
-		// thorwables
+		// throwables
 
 		for (unsigned int i = 0; i < blueFireBalls.size(); ++i)
 		{
@@ -317,7 +317,7 @@ void GameState::checkDamage(Entity& enemy, sf::Vector2f direction)
 		{
 			if (enemy.canTakeDamage)
 				enemy.playerOnEnemyCollision(direction);
-
+			direction.y *= -1.f;
 			this->player->playerOnEnemyCollision(direction); // knockback
 
 			this->player->getCombatComponent()->takeDamage(enemy.getCombatComponent()->getNearAttack());
@@ -332,9 +332,9 @@ void GameState::checkDamage(Entity& enemy, sf::Vector2f direction)
 
 		if (enemy.canTakeDamage)
 		{
-			this->player->playerOnEnemyCollision(direction); // knockback player
 			enemy.playerOnEnemyCollision(direction); // knockback enemy
-
+			direction.y *= -1.f;
+			this->player->playerOnEnemyCollision(direction); // knockback player
 			enemy.getCombatComponent()->takeDamage(this->player->getCombatComponent()->getNearAttack());
 
 			enemy.canTakeDamage = false;
@@ -345,7 +345,7 @@ void GameState::checkDamage(Entity& enemy, sf::Vector2f direction)
 	else if (this->player->canTakeDamage) // enemy on top
 	{
 		enemy.playerOnEnemyCollision(direction);
-
+		direction.y *= -1.f;
 		this->player->playerOnEnemyCollision(direction); // knockback
 
 		this->player->getCombatComponent()->takeDamage(enemy.getCombatComponent()->getNearAttack());
@@ -524,7 +524,7 @@ void GameState::clearDeadEnemies()
 }
 
 GameState::GameState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states) 
-	: State(window, supportedKeys, states) ,view(sf::Vector2f(0.f,0.f), sf::Vector2f(1920.f,1080.f))
+	: State(window, supportedKeys, states) ,view(sf::Vector2f(0.f,0.f), sf::Vector2f(1920.f,1080.f)), jumpKeyStateFlag(false)
 {
 
 }
@@ -584,6 +584,12 @@ void GameState::updateInput(const float& dt)
 
 void GameState::updatePlayerInput(const float& dt)
 {
+	if ((previousKeyState == false && sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_UP")))) || previousKeyState == true && !sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_UP")))) {
+		jumpKeyStateFlag = true;
+	}
+	else {
+		jumpKeyStateFlag = false;
+	}
 	sf::Vector2f dir(0.f, 0.f);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_LEFT")))) {
 		dir.x += -1.f;
@@ -592,13 +598,20 @@ void GameState::updatePlayerInput(const float& dt)
 		dir.x += 1.f;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_UP")))) {
-		dir.y += -1.f;
-		this->player->move(dir.x, dir.y, dt, player->canJump);
-		this->player->canJump = false;
+		if (player->getMovementComponent()->getJumpedOnce()) {
+			if (jumpKeyStateFlag == true) {
+				dir.y += -1.f;
+			}
+		}
+		else {
+			dir.y += -1.f;
+		}
+		previousKeyState = true;
 	}
 	else {
-		this->player->move(dir.x, dir.y, dt, player->canJump);
+		previousKeyState = false;
 	}
+	this->player->move(dir.x, dir.y, dt, player->canJump);
 }
 
 void GameState::updatePauseMenuButtons()

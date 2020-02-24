@@ -29,6 +29,7 @@ private:
 	float jumpHeight;
 
 	bool canJump;
+	bool jumpedOnce;
 
 	sf::Vector2f velocity;
 	//initializer functions
@@ -47,6 +48,9 @@ public:
 
 	void move(const float dir_x, const float dir_y, const float& dt, bool& canJump);
 	void update(const float& dt);
+
+	void resetDoubleJump();
+	const bool& getJumpedOnce() { return this->jumpedOnce; };
 
 	void playerJumpModification(const float dir_y, const float& dt, bool& canJump);
 

@@ -29,6 +29,9 @@ protected:
 	GameoverState* gover;
 	SuccessState* successmenu;
 
+	bool jumpKeyStateFlag;
+	bool previousKeyState;
+
 	int score = 0;
 	bool setted = false;
 	float timeInGame = 0.f;

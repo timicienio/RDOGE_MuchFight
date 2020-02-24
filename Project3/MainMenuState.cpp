@@ -51,7 +51,7 @@ void MainMenuState::initButtons()
 
 void MainMenuState::initPlayer()
 {
-	this->player = new Player(0.f, 0.f, this->textures["PLAYER"], 300.f);
+	this->player = new Player(0.f, 0.f, this->textures["PLAYER"], 150.f);
 }
 
 void MainMenuState::initTexture()
@@ -73,7 +73,7 @@ void MainMenuState::initPlatforms()
 }
 
 MainMenuState::MainMenuState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states)
-	: State(window, supportedKeys, states), view(sf::Vector2f(0.f, 0.f), sf::Vector2f(VIEW_WIDTH / 2, VIEW_HEIGHT / 2)), flash(false), flashTime(0.8f)
+	: State(window, supportedKeys, states), view(sf::Vector2f(0.f, 0.f), sf::Vector2f(VIEW_WIDTH / 2, VIEW_HEIGHT / 2)), flash(false), flashTime(0.8f), jumpKeyStateFlag(false)
 {
 	this->initVariables();
 	this->initTexture();
@@ -128,6 +128,12 @@ void MainMenuState::updateButtons()
 
 void MainMenuState::updatePlayerInput(const float& dt)
 {
+	if ((previousKeyState == false && sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_UP")))) || previousKeyState == true && !sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_UP")))) {
+		jumpKeyStateFlag = true;
+	}
+	else {
+		jumpKeyStateFlag = false;
+	}
 	sf::Vector2f dir(0.f, 0.f);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_LEFT")))) {
 		dir.x += -1.f;
@@ -136,13 +142,20 @@ void MainMenuState::updatePlayerInput(const float& dt)
 		dir.x += 1.f;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_UP")))) {
-		dir.y += -1.f;
-		this->player->move(dir.x, dir.y, dt, player->canJump);
-		this->player->canJump = false;
+		if (player->getMovementComponent()->getJumpedOnce()) {
+			if (jumpKeyStateFlag == true) {
+				dir.y += -1.f;
+			}
+		}
+		else {
+			dir.y += -1.f;
+		}
+		previousKeyState = true;
 	}
 	else {
-		this->player->move(dir.x, dir.y, dt, player->canJump);
+		previousKeyState = false;
 	}
+	this->player->move(dir.x, dir.y, dt, player->canJump);
 }
 
 void MainMenuState::update(const float& dt)

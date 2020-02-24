@@ -48,7 +48,7 @@ void Game::initWindow()
 
     this->window->setFramerateLimit(framerate_limit);
     this->window->setVerticalSyncEnabled(vertical_sync_enabled);
-    
+    this->window->setKeyRepeatEnabled(false);
 }
 
 void Game::initKeys()
@@ -167,7 +167,5 @@ void Game::update()
     {
         this->endApplication();
         this->window->close();
-
-
     }
 }
