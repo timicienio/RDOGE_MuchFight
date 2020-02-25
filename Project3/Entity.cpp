@@ -160,10 +160,10 @@ void Entity::onCollision(sf::Vector2f direction)
 void Entity::playerOnEnemyCollision(sf::Vector2f direction)
 {
 	if (direction.x > 0) {
-		movementComponent->velocity.x = -direction.x * 0.6f * KNOCKBACK_VELOCITY;
+		movementComponent->velocity.x = direction.x * 0.6f * KNOCKBACK_VELOCITY;
 	}
 	if (direction.x < 0) {
-		movementComponent->velocity.x = -direction.x * 0.6f * KNOCKBACK_VELOCITY;
+		movementComponent->velocity.x = direction.x * 0.6f * KNOCKBACK_VELOCITY;
 	}
 	if (direction.y < 0) {
 		movementComponent->velocity.y = direction.y * 0.6f * KNOCKBACK_VELOCITY_VERTICAL;

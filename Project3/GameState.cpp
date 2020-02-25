@@ -312,16 +312,11 @@ void GameState::checkDamage(Entity& enemy, sf::Vector2f direction)
 {
 	if (direction.y == 0.f) // collision from side (player takes damage)
 	{
-
+		enemy.playerOnEnemyCollision(direction);
 		if (this->player->canTakeDamage)
 		{
-			if (enemy.canTakeDamage)
-				enemy.playerOnEnemyCollision(direction);
-			direction.y *= -1.f;
-			this->player->playerOnEnemyCollision(direction); // knockback
-
+			this->player->playerOnEnemyCollision(direction * -1.f); // knockback
 			this->player->getCombatComponent()->takeDamage(enemy.getCombatComponent()->getNearAttack());
-
 			this->player->canTakeDamage = false;
 			this->player->resetTimeSinceHurt();
 		}
@@ -330,28 +325,25 @@ void GameState::checkDamage(Entity& enemy, sf::Vector2f direction)
 	else if (direction.y > 0) // player on top
 	{
 
+		enemy.playerOnEnemyCollision(direction); // knockback enemy
+		this->player->playerOnEnemyCollision(direction *-1.f); // knockback player
 		if (enemy.canTakeDamage)
 		{
-			enemy.playerOnEnemyCollision(direction); // knockback enemy
-			direction.y *= -1.f;
-			this->player->playerOnEnemyCollision(direction); // knockback player
 			enemy.getCombatComponent()->takeDamage(this->player->getCombatComponent()->getNearAttack());
-
 			enemy.canTakeDamage = false;
 			enemy.resetTimeSinceHurt();
 		}
 	}
 
-	else if (this->player->canTakeDamage) // enemy on top
-	{
+	else {
 		enemy.playerOnEnemyCollision(direction);
-		direction.y *= -1.f;
-		this->player->playerOnEnemyCollision(direction); // knockback
-
-		this->player->getCombatComponent()->takeDamage(enemy.getCombatComponent()->getNearAttack());
-
-		this->player->canTakeDamage = false;
-		this->player->resetTimeSinceHurt();
+		this->player->playerOnEnemyCollision(direction * -1.f); // knockback
+		if (this->player->canTakeDamage) // enemy on top
+		{
+			this->player->getCombatComponent()->takeDamage(enemy.getCombatComponent()->getNearAttack());
+			this->player->canTakeDamage = false;
+			this->player->resetTimeSinceHurt();
+		}
 	}
 }
 
@@ -877,7 +869,7 @@ void GameState::update(const float& dt)
 	this->checkBossDefeated();
 
 
-	// checks collisions between same types of enmies
+	// checks collisions between same types of enemies
 	this->checkSameTypeEnemyCollision();
 
 	// player's collision with enemies (also checks harm and take damage)
