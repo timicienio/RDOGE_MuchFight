@@ -8,8 +8,6 @@ private:
 	//// functions
 	// initializers
 	void initBackground();
-	void initPlatform();
-	void initEntities();
 
 
 public:

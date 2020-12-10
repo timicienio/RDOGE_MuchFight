@@ -10,19 +10,11 @@ void GameState_Classroom::initBackground()
 	this->background.setPosition(sf::Vector2f(0.f, 0.f));
 }
 
-void GameState_Classroom::initPlatform()
-{
-}
-
-void GameState_Classroom::initEntities()
-{
-}
 
 GameState_Classroom::GameState_Classroom(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states)
 	: GameState(window, supportedKeys, states)
 {
-	this->initPlatform();
-	this->initEntities();
+	this->loadMap(std::string("Map/classroom.txt"));
 
 	this->initKeybinds();
 	this->initFonts();

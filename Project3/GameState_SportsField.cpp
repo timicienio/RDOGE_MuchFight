@@ -10,20 +10,10 @@ void GameState_SportsField::initBackground()
 	this->background.setPosition(sf::Vector2f(0.f, 0.f));
 }
 
-void GameState_SportsField::initPlatform()
-{
-}
-
-void GameState_SportsField::initEntities()
-{
-}
-
 GameState_SportsField::GameState_SportsField(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states)
 	: GameState(window, supportedKeys, states)
 {
-	this->initBackground();
-	this->initPlatform();
-	this->initEntities();
+	this->loadMap(std::string("Map/sportsfield.txt"));
 
 	this->initGUI();
 	this->initKeybinds();

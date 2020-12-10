@@ -35,6 +35,215 @@ void GameState::initTexture()
 	this->textures["GOAL"].loadFromFile("Resources/images/sprites/FlagpoleSpriteSheet.png");
 }
 
+void GameState::initPlatform(std::fstream& mapFile)
+{
+	int numBlocks, numBlocksRow, numBlocksColumn, numPlatforms;
+	int currentPlatformIndex = 0, removingPlatformIndex;
+	char typeOfBlock;
+	char** map = new char* [sizeRow];
+	for (int i = 0; i < sizeRow; ++i)
+	{
+		map[i] = new char[sizeColumn];
+	}
+
+	for (int i = 0; i < sizeRow; ++i)
+	{
+		for (int j = 0; j < sizeColumn; ++j)
+		{
+			mapFile >> map[i][j];
+		}
+	}
+
+	numBlocks = sizeRow * sizeColumn;
+
+	while (numBlocks > 0)
+	{
+		for (int i = 1; i <= numBlocks; ++i)
+		{
+			if (numBlocks % i == 0)
+			{
+				numBlocksRow = i;
+				numBlocksColumn = numBlocks / i;
+				for (int i = 0; i < sizeRow - numBlocksRow; ++i)
+				{
+					for (int j = 0; j < sizeColumn - numBlocksColumn; ++j)
+					{
+						if (map[i][j] != '.')
+						{
+							if (checkIdentical(map, i, j, numBlocksRow, numBlocksColumn, typeOfBlock))
+							{
+								switch (typeOfBlock)
+								{
+									// collision
+								case '*':
+									platformWithCollision.push_back(Platform(&(this->textures["GRASS"]), sf::Vector2f(numBlocksColumn, numBlocksRow), sf::Vector2f(j, i)));
+									currentPlatformIndex++;
+									break;
+
+								case '+':
+									platformWithCollision.push_back(Platform(&(this->textures["DIRT"]), sf::Vector2f(numBlocksColumn, numBlocksRow), sf::Vector2f(j, i)));
+									currentPlatformIndex++;
+									break;
+
+								case '0':
+									platformWithCollision.push_back(Platform(&(this->textures["IRON"]), sf::Vector2f(numBlocksColumn, numBlocksRow), sf::Vector2f(j, i)));
+									currentPlatformIndex++;
+									break;
+
+								case '%':
+									platformWithCollision.push_back(Platform(&(this->textures["BLOCK"]), sf::Vector2f(numBlocksColumn, numBlocksRow), sf::Vector2f(j, i)));
+									currentPlatformIndex++;
+									break;
+
+								case '=':
+									platformWithCollision.push_back(Platform(&(this->textures["BRICK"]), sf::Vector2f(numBlocksColumn, numBlocksRow), sf::Vector2f(j, i)));
+									currentPlatformIndex++;
+									break;
+
+								case '#':
+									platformWithCollision.push_back(Platform(&(this->textures["BLOCK"]), sf::Vector2f(numBlocksColumn, numBlocksRow), sf::Vector2f(j, i)));
+									barrierPlatformIndex.push_back(currentPlatformIndex);
+									removingPlatformIndex = currentPlatformIndex;
+									currentPlatformIndex++;
+									break;
+
+									// no collision
+								case '/':
+									platformWithoutCollision.push_back(Platform(&(this->textures["DIRT2"]), sf::Vector2f(numBlocksColumn, numBlocksRow), sf::Vector2f(j, i)));
+									break;
+
+								case '-':
+									platformWithoutCollision.push_back(Platform(&(this->textures["BRICK2"]), sf::Vector2f(numBlocksColumn, numBlocksRow), sf::Vector2f(j, i)));
+									break;
+
+								case 'f':
+									goal = new Goal(&(this->textures["GOAL"]), sf::Vector2f(GOAL_WIDTH, GOAL_HEIGHT), sf::Vector2f(j * UNIT_LENGTH, i * UNIT_LENGTH));
+									break;
+
+								default:
+									break;
+
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		numBlocks--;
+	}
+	for (int i = 0; i < sizeRow; ++i)
+	{
+		delete[] map[i];
+	}
+	delete[] map;
+}
+
+void GameState::initEntities(std::fstream& mapFile)
+{
+	char** map = new char* [sizeRow];
+	for (int i = 0; i < sizeRow; ++i)
+	{
+		map[i] = new char[sizeColumn];
+	}
+	for (int i = 0; i < sizeRow; ++i)
+	{
+		for (int j = 0; j < sizeColumn; ++j)
+		{
+			mapFile >> map[i][j];
+		}
+	}
+	for (int i = 0; i < sizeRow; ++i)
+	{
+		for (int j = 0; j < sizeColumn; ++j)
+		{
+			switch (map[i][j])
+			{
+			case 'p':
+				this->player = new Player(j, i, this->textures["PLAYER_SHEET"], 200.f);
+				break;
+
+			case 'b':
+				bicycles.push_back(new Bicycle(j, i, this->textures["BICYCLE"], 0.f));
+				break;
+
+			case 'm':
+				maisies.push_back(new Maisy(j, i, this->textures["MAISY"], 0.f));
+				break;
+
+			case 'n':
+				nyanCats.push_back(new NyanCat(j, i, this->textures["NYANCAT"], 0.f));
+				break;
+
+			case 'd':
+				wickedDoge.push_back(new WickedDoge(j, i, this->textures["WICKED_DOGE"], 0.f));
+				break;
+
+			case 's':
+				shuiYuanABes.push_back(new ShuiYuanABe(j, i, this->textures["ABE"], 0.f));
+				this->boss = shuiYuanABes[0];
+				break;
+
+			default:
+				break;
+			}
+		}
+	}
+	for (int i = 0; i < sizeRow; ++i)
+	{
+		delete[] map[i];
+	}
+	delete[] map;
+}
+
+void GameState::loadMap(std::string mapName)
+{
+	mapFile.open(mapName);
+	mapFile >> this->sizeRow >> this->sizeColumn;
+	if (!mapFile.is_open()) {
+		std::cout << mapName << " loading error, using default map \" palm-boulevard \" " << std::endl;
+		mapFile.open("Map/palm-boulevard");
+	}
+	initPlatform(mapFile);
+	initEntities(mapFile);
+	mapFile.close();
+}
+
+bool GameState::checkIdentical(char** map, int row, int column, int sizeRow, int sizeColumn, char& typeOfBlock)
+{
+	typeOfBlock = map[row][column];
+	bool identical = true;
+
+	for (int i = row; i < row + sizeRow; ++i)
+	{
+		for (int j = column; j < column + sizeColumn; ++j)
+		{
+			if (map[i][j] != typeOfBlock)
+			{
+				identical = false;
+				break;
+			}
+		}
+		if (!identical)
+		{
+			break;
+		}
+	}
+
+	if (identical)
+	{
+		for (int i = row; i < row + sizeRow; ++i)
+		{
+			for (int j = column; j < column + sizeColumn; ++j)
+			{
+				map[i][j] = '.';
+			}
+		}
+	}
+
+	return identical;
+}
+
 void GameState::initGUI()
 {
 	this->playerHealthBar = new PlayerHealthBar(this->player, &this->textures["HEART"]);
@@ -412,7 +621,10 @@ void GameState::checkBossDefeated()
 {
 	if ((this->boss == nullptr && !this->erased)) // is deleted
 	{
-		this->platformWithCollision.erase(platformWithCollision.begin() + barrierPlatformIndex);
+		while (!barrierPlatformIndex.empty()) {
+			this->platformWithCollision.erase(platformWithCollision.begin() + barrierPlatformIndex[0]);
+			barrierPlatformIndex.erase(barrierPlatformIndex.begin());
+		}
 		this->erased = true;
 	}
 }
@@ -646,8 +858,8 @@ void GameState::updateView()
 	else if(this->viewCenter.y >= lowerBound){
 		this->viewCenter.y -= (lowerBound - center);
 	}
-	if (this->viewCenter.x < 1100.f) {
-		this->viewCenter.x = 1100.f;
+	if (this->viewCenter.x < 1010.f) {
+		this->viewCenter.x = 1010.f;
 	}
 	view.setCenter(this->viewCenter);
 }

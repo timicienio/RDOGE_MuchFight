@@ -76,6 +76,7 @@ void Player::move(const float dir_x, const float dir_y, const float& dt, bool& c
 {
 	if (this->movementComponent)
 	{
+		cout << "Move" << endl;
 		this->movementComponent->move(dir_x, dir_y, dt, canJump);//sets velocity
 
 		//only add if double jump isn't allowed

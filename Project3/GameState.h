@@ -1,5 +1,7 @@
 #pragma once
 
+#include<string>
+#include<fstream>
 #include "State.h"
 
 #include "Bicycle.h"
@@ -36,6 +38,9 @@ protected:
 	bool setted = false;
 	float timeInGame = 0.f;
 
+	std::fstream mapFile;
+	int sizeRow;
+	int sizeColumn;
 
 	//// entities
 	// player
@@ -61,7 +66,7 @@ protected:
 	std::vector<Platform> platformWithoutCollision;
 
 	// platform index to be erased after defeating the boss
-	unsigned int barrierPlatformIndex;
+	std::vector<unsigned int> barrierPlatformIndex;
 	bool erased = false;
 
 	// x coordinate for success pole
@@ -87,11 +92,13 @@ protected:
 
 
 	virtual void initBackground() = 0;
-	virtual void initPlatform() = 0;
-	virtual void initEntities() = 0;
+	void initPlatform(std::fstream& mapFile);
+	void initEntities(std::fstream& mapFile);
 
+	void loadMap(std::string mapName);
+	bool checkIdentical(char** map, int row, int column, int sizeRow, int sizeColumn, char& typeOfBlock);
+	
 	void initGUI();
-
 
 	// platform collision
 	void checkPlatformCollision();

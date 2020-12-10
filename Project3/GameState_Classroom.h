@@ -7,9 +7,7 @@ private:
 
 	//// functions
 	// initializers
-	void initBackground();
-	void initPlatform();
-	void initEntities();
+	void initBackground() override;
 
 
 public:

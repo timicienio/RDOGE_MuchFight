@@ -10,19 +10,10 @@ void GameState_Farm::initBackground()
 	this->background.setPosition(sf::Vector2f(0.f, 0.f));
 }
 
-void GameState_Farm::initPlatform()
-{
-}
-
-void GameState_Farm::initEntities()
-{
-}
-
 GameState_Farm::GameState_Farm(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states)
 	: GameState(window, supportedKeys, states)
 {
-	this->initPlatform();
-	this->initEntities();
+	this->loadMap(std::string("Map/farm.txt"));
 
 	this->initKeybinds();
 	this->initFonts();
